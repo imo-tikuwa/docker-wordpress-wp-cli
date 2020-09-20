@@ -17,6 +17,10 @@ services:
         volumes:
             # - ./docker/wp/php.ini:/usr/local/etc/php/php.ini
             - ./html:/var/www/html
+        environment:
+            MYSQL_DATABASE: wordpress
+            MYSQL_USER: wpuser
+            MYSQL_PASSWORD: password
         depends_on:
             - db
     db:

@@ -2,3 +2,5 @@ mysql
 !mysql/.gitkeep
 html
 !html/.gitkeep
+docker/wp/wpress
+!docker/wp/wpress/.gitkeep
