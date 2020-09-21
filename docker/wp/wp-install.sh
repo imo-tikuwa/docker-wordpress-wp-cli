@@ -12,3 +12,5 @@ wp --allow-root core install --title=$WP_BLOG_TITLE --admin_user=$WP_ADMIN_USER 
 wp --allow-root plugin uninstall akismet hello --path=$WP_INSTALL_PATH
 wp --allow-root plugin install wp-multibyte-patch --activate --path=$WP_INSTALL_PATH
 wp --allow-root plugin install all-in-one-wp-migration --activate --path=$WP_INSTALL_PATH
+# 以下実行しても変わらない
+# chown -R www-data: $WP_INSTALL_PATH/wp-content

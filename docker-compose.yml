@@ -17,7 +17,7 @@ services:
     wp:
         build: ./docker/wp
         volumes:
-            # - ./docker/wp/php.ini:/usr/local/etc/php/php.ini
+            - ./docker/wp/php.ini:/usr/local/etc/php/php.ini
             # wpのWP_INSTALL_PATHに合わせる
             # - ./html:/var/www/html
             - ./html:/var/www/html/ssl-2016
