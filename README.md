@@ -6,6 +6,14 @@ docker-compose up --build -d
 docker-compose exec wp bash /tmp/wp-install.sh
 ```
 
+## やり直すとき
+永続化してるデータを消す必要があるかも
+```
+docker-compose down --rmi all --volumes
+rm -fR html\*
+rm -fR mysql\*
+```
+
 ## memo
 それぞれのコンテナ内に入るコマンドは以下の通り
 ```
