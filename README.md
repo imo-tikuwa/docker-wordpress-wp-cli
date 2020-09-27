@@ -9,9 +9,7 @@ docker-compose exec wp bash /tmp/wp-install.sh
 ## やり直すとき
 永続化してるデータを消す必要があるかも
 ```
-docker-compose down --rmi all --volumes
-rm -fR html\*
-rm -fR mysql\*
+docker-compose down --rmi all --volumes && rm -fR html\* && rm -fR mysql\*
 ```
 
 ## memo
