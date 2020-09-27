@@ -5,6 +5,11 @@
 docker-compose up --build -d
 docker-compose exec wp bash /tmp/wp-install.sh
 ```
+---
+wp-install.shの実行について、mysql/wordpressが出来上がるまで待つ必要がありそう。すぐに実行すると以下のようにインストールコマンド時のmysqlの接続が確立できなくてエラー出ちゃいます。
+```
+ERROR 2002 (HY000): Can't connect to MySQL server on 'db' (115)
+```
 
 ## やり直すとき
 永続化してるデータを消す必要があるかも
@@ -18,11 +23,4 @@ docker-compose down --rmi all --volumes && rm -fR html\* && rm -fR mysql\*
 docker-compose exec web sh
 docker-compose exec wp bash
 docker-compose exec db bash
-```
-
-wp-cliによるWordPres操作
-```
-wp core install --title='ほげ' --admin_user='admin' --admin_password='password' --admin_email='imo-tikuwa@example.com' --url='http://localhost'
-wp plugin uninstall akismet hello
-wp plugin install wp-multibyte-patch --activate
 ```
