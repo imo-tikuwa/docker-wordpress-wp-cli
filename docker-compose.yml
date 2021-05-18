@@ -19,18 +19,6 @@ services:
             # wpのWP_INSTALL_PATHに合わせる
             - ./html:/var/www/html
             # - ./html:/var/www/html/ssl-2016
-        environment:
-            MYSQL_DATABASE: wordpress
-            MYSQL_USER: wpuser
-            MYSQL_PASSWORD: password
-            WP_INSTALL_PATH: /var/www/html
-            # WP_INSTALL_PATH: /var/www/html/ssl-2016
-            WP_BLOG_TITLE: テスト
-            WP_ADMIN_USER: admin
-            WP_ADMIN_PASSWORD: password
-            WP_ADMIN_EMAIL: imo-tikuwa@example.com
-            WP_HTTP_ROOT: http://127.0.0.1
-            # WP_HTTP_ROOT: http://127.0.0.1/ssl-2016
         depends_on:
             - db
     db:
@@ -39,11 +27,23 @@ services:
             - ./mysql:/var/lib/mysql
         ports:
             - 43306:3306
-        environment:
-            MYSQL_DATABASE: wordpress
-            MYSQL_USER: wpuser
-            MYSQL_PASSWORD: password
-            MYSQL_ROOT_PASSWORD: password
+    schemaspy:
+        build: ./docker/schemaspy
+        volumes:
+            - ./erd/output:/output
+        command: >
+            -t mysql
+            -dp /drivers_inc/mysql-connector-java-6.0.6.jar
+            -host db
+            -port 3306
+            -db ${MYSQL_DATABASE}
+            -s ${MYSQL_DATABASE}
+            -u ${MYSQL_USER}
+            -p ${MYSQL_PASSWORD}
+            -connprops useSSL\\=false
+            -debug
+        links:
+            - db
 # volumes:
 #     document_root:
 #         driver_opts:
